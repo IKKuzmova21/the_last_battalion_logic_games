@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include <cstdlib>
 using namespace std;
 
@@ -24,8 +25,14 @@ void updateHangMan(char hangMan[][20], char word[], char letter, int i)
 }
 int main()
 {
-    char letter, word[100] = "gay", Replacementword[100];
-    for (int i = 0; i < 3; i++)
+    char letter, word[100], Replacementword[100];
+    int wordLenght;
+
+    cout << "Enter word:" << endl;
+    cin.getline(word, 100);
+    wordLenght = strlen(word);
+
+    for (int i = 0; i < wordLenght; i++)
     {
         Replacementword[i] = '_';
     }
@@ -48,6 +55,8 @@ int main()
     {
 
         printHangMan(hangMan);
+        cout << "Time to guess the word!" << endl;
+
         for (int i = 0; i < 3; i++)
         {
             cout << Replacementword[i];
@@ -55,13 +64,14 @@ int main()
         cin >> letter;
 
         for (int j = 0; j < 3; j++)
-        {
-            if (letter = word[j])
-                updateHangMan(hangMan, Replacementword, letter, j);
-
-        }
-
-
+            {
+                if (letter == word[j])
+                {
+                    updateHangMan(hangMan, Replacementword, letter, j);
+                }
+                else
+                    cout << "Wrong guess";
+            }
 
     }
 }
