@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <cstdlib>
 using namespace std;
 
 void printHangMan(char hangMan[][20])
@@ -17,7 +17,7 @@ void printHangMan(char hangMan[][20])
 void updateHangMan(char hangMan[][20], char word[], char letter, int i)
 {
 
-    
+
     word[i] = letter;
 
 
