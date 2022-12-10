@@ -4,6 +4,15 @@
 #include <iomanip>
 using namespace std;
 
+bool checkForCompletion(char arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] == '_') return false;
+    }
+    return true;
+}
+
 void printHangMan(char hangMan[][20])
 {
     system("cls");
@@ -56,18 +65,21 @@ void updateFinalCross(char hangMan[][20], char cheatSheat[])
 int main()
 {
     system("cls");
-    char letter, arrOfUsedLetters[100], word[100], Replacementword[100], bodyElements[30] = { 3, 11, '|', 3, 13,'|',4, 12, '-', 5, 12, '|', 6, 12, '|', 5, 11, '/', 5, 13, '\\',7, 11, '/', 7, 13, '\\', 3, 12, 'X' };
-    int wordLenght, rightGuesses = 0;
+    char letter, arrOfUsedLetters[100], word[100], Replacementword[100], wordHolder[100], bodyElements[30] = { 3, 11, '|', 3, 13,'|',4, 12, '-', 5, 12, '|', 6, 12, '|', 5, 11, '/', 5, 13, '\\',7, 11, '/', 7, 13, '\\', 3, 12, 'X' };
+    int wordLength, rightGuesses = 0;
     int cntMistakes = 0, counter = 0;
     int check = 0;
     cout << "Enter word:" << endl;
     cin.getline(word, 100);
-    wordLenght = strlen(word);
+    wordLength = strlen(word);
     int j = 0;
-    for (int i = 0; i < wordLenght; i++)
+    for (int i = 0; i < wordLength; i++)
     {
         Replacementword[i] = '_';
+        wordHolder[i] = word[i];
     }
+    Replacementword[0] = word[0];
+    Replacementword[wordLength - 1] = word[wordLength - 1];
     //3, 11, 3, 13, 4, 12, 5, 12, 6, 12 
     bool running = true;
     char hangMan[10][20]
@@ -88,9 +100,9 @@ int main()
     {
         printHangMan(hangMan);
 
-        if (rightGuesses == wordLenght && cntMistakes < 5)
+        if (checkForCompletion(Replacementword, wordLength) && cntMistakes < 5)
         {
-            for (int i = 0; i < wordLenght; i++)
+            for (int i = 0; i < wordLength; i++)
             {
                 cout << Replacementword[i];
             }
@@ -98,12 +110,17 @@ int main()
 
             cout << "Congrats, you guessed the word!" << endl;
 
-            cout << "The word was " << word << ".";
+            cout << "The word was ";
+            for (int i = 0; i < wordLength; i++)
+            {
+                cout << wordHolder[i];
+            }
+            cout << ".";
             break;
         }
         else if (cntMistakes >= 5)
         {
-            for (int i = 0; i < wordLenght; i++)
+            for (int i = 0; i < wordLength; i++)
             {
                 cout << Replacementword[i];
             }
@@ -111,50 +128,57 @@ int main()
 
             cout << "You lost!" << endl;
 
-            cout << "The word was " << word << ".";
+            cout << "The word was ";
+            for (int i = 0; i < wordLength; i++)
+            {
+                cout << wordHolder[i];
+            }
+            cout << ".";
             break;
 
         }
         cout << "Time to guess the word!" << endl;
 
-        for (int i = 0; i < wordLenght; i++)
+        for (int i = 0; i < wordLength; i++)
         {
             cout << Replacementword[i];
         }
         cin >> letter;
         arrOfUsedLetters[counter] = letter;
-        counter++;
+
         //1
         //2
         //3
         //4
-        for (int i = 0; i < wordLenght; i++)
+        for (int i = 0; i < strlen(arrOfUsedLetters); i++)
         {
+
             if (arrOfUsedLetters[i] == letter)
             {
                 check++; break;
             }
-            else
-            {
-                check--;
-            }
+
         }
+
         //1
         //1
         //2
         //2
         int mistakes = rightGuesses;
-        for (int j = 0; j < wordLenght; j++)
+        //0
+        //1
+        for (int j = 0; j < wordLength; j++)
         {
 
-            if (letter == word[j] && check < 2)
+            if (letter == word[j])
             {
                 updateHangMan(hangMan, Replacementword, letter, j);
                 rightGuesses++;
+                word[j] = '*';
             }
         }
         //1
-        //1
+        //2
         //1
         if (rightGuesses == mistakes)
         {
