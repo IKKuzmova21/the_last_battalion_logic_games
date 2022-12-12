@@ -290,6 +290,8 @@ int main()
         }
         else if (playAgain == 'N' || playAgain == 'n')
         {
+            system("cls");
+            cout << "Thank you for playing!";
             break;
         }
     }
