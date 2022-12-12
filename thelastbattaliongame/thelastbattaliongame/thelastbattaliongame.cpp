@@ -267,8 +267,9 @@ void runGame()
             case 5: updateFinalCross(hangMan, bodyElements);
             }
         }
-
     }
+    cout << endl;
+    cout << "Play Again [Y/N]";
 }
 int main()
 {
@@ -277,24 +278,19 @@ int main()
     printMenu();
     system("pause");
     system("cls");
-    
+
     runGame();
-    
+
     while (true)
     {
-        
-        cout << endl;
-        cout <<  "Play again?[Y/N]" << endl;
         cin >> playAgain;
         if (playAgain == 'Y' || playAgain == 'y')
         {
             runGame();
         }
-        else if(playAgain == 'N' || playAgain == 'n')
+        else if (playAgain == 'N' || playAgain == 'n')
         {
             break;
         }
     }
 }
-
-
