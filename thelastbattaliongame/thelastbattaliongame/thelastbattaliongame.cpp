@@ -121,23 +121,19 @@ int randomNumber()
     //the seed is the starting value of the random number sequence
     return rand() % 11;
 }
-int main()
+void runGame()
 {
     char letter, arrOfUsedLetters[100], Replacementword[100], wordHolder[100], bodyElements[30] = { 3, 11, '|', 3, 13,'|',4, 12, '-', 5, 12, '|', 6, 12, '|', 5, 11, '/', 5, 13, '\\',7, 11, '/', 7, 13, '\\', 3, 12, 'X' };
     int wordLength, rightGuesses = 0;
     int cntMistakes = 0, counter = 0;
     int check = 0;
-    
-    printMenu();
-    system("pause");
-    system("cls");
 
 
     char randomWords[20][10]
     {
         "bottle", "water", "winter", "snow", "giraffe", "elephant", "element", "cockroach", "safety", "burger", "shinning", "beautiful"
     }, word[10];
-    
+
     bool flag = true;
     while (flag)
     {
@@ -215,7 +211,7 @@ int main()
             break;
 
         }
-       
+
         cout << "Time to guess the word!" << endl;
 
         for (int i = 0; i < wordLength; i++)
@@ -271,7 +267,33 @@ int main()
             case 5: updateFinalCross(hangMan, bodyElements);
             }
         }
+
+    }
+}
+int main()
+{
+    char playAgain;
+
+    printMenu();
+    system("pause");
+    system("cls");
+    
+    runGame();
+    
+    while (true)
+    {
         
+        cout << endl;
+        cout <<  "Play again?[Y/N]" << endl;
+        cin >> playAgain;
+        if (playAgain == 'Y' || playAgain == 'y')
+        {
+            runGame();
+        }
+        else if(playAgain == 'N' || playAgain == 'n')
+        {
+            break;
+        }
     }
 }
 
