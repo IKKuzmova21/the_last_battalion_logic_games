@@ -21,7 +21,7 @@
     
 ## 📋 Description:
     
-*This repo is all about our Word and Math Project. Our task was to create an application or a game in C++ . 
+*This repo is about our Word and Math Project. Our task was to create an application or a game in C++ . 
 We have decided to make a Hangman game, in which you can play the hangman game with different words we have picked for you.*   
 
 
@@ -34,7 +34,7 @@ We have decided to make a Hangman game, in which you can play the hangman game w
    
 ## ⚙ Installation
 ```
-You can download our project by pasting the following code in your CMD:
+You can download our project by cloning the following link in your CMD:
 https://github.com/IKKuzmova21/the_last_battalion_logic_games.git
 ```
 
